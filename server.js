@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // spin up server
 app.listen(port, function() {
   console.log('server up on', port);
+  console.log('pool is', pool);
 });
 
 // base url
