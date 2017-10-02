@@ -13,7 +13,7 @@ var pg = require('pg');
 //   // port: 5432, // always use this port for localhost postgresql
 //   max: 12
 // };
-
+var url = require('url');
 var config = {};
 
 if (process.env.DATABASE_URL) {
