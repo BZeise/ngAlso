@@ -8,8 +8,9 @@ var port = process.env.PORT || 1234;
 var pg = require('pg');
 var config = {
   database: 'tododb',
-  host: process.env.DATABASE_URL || 'localhost',
-  port: 5432, // always use this port for localhost postgresql
+  host: process.env.DATABASE_URL,
+  // host: process.env.DATABASE_URL || 'localhost',
+  // port: 5432, // always use this port for localhost postgresql
   max: 12
 };
 
