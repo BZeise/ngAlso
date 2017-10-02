@@ -14,7 +14,7 @@ var config = {
   max: 12
 };
 
-var pool = new pg.Pool(config);
+// var pool = new pg.Pool(config);
 
 // new method removing pg code to methods/connection
 // var pool = require('./modules/connection');
@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
 // post to add new task to taskDB
 app.post( '/tasks', function( req, res ) {
   console.log( 'post hit to /tasks:', req.body );
-  pool.connect( function( err, connection, done ){
+  pg.connect(process.env.DATABASE_URL, function( err, connection, done ){
     if( err ){
       console.log( err );
       done();
@@ -57,7 +57,7 @@ app.post( '/tasks', function( req, res ) {
 // get to populate task list
 app.get('/tasks', function(req, res) {
   console.log('get hit to /tasks');
-  pool.connect( function( err, connection, done ) {
+  pg.connect(process.env.DATABASE_URL, function( err, connection, done ) {
     if( err ) {
       console.log( err );
       done();
@@ -81,7 +81,7 @@ app.get('/tasks', function(req, res) {
 // post to delete a task from taskDB
 app.post( '/delete', function( req, res ) {
   console.log( 'post hit to /delete:', req.body );
-  pool.connect( function( err, connection, done ){
+  pg.connect(process.env.DATABASE_URL, function( err, connection, done ){
     if( err ){
       console.log( err );
       done();
@@ -98,7 +98,7 @@ app.post( '/delete', function( req, res ) {
 // post to complete a task from taskDB
 app.post( '/complete', function( req, res ) {
   console.log( 'post hit to /complete:', req.body );
-  pool.connect( function( err, connection, done ){
+  pg.connect(process.env.DATABASE_URL, function( err, connection, done ){
     if( err ){
       console.log( err );
       done();
