@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
 var port = process.env.PORT || 1234;
 
 // globals
-var pg = require('pg');
 // var config = {
 //   database: 'tododb',
 //   host: process.env.DATABASE_URL,
@@ -13,36 +12,12 @@ var pg = require('pg');
 //   // port: 5432, // always use this port for localhost postgresql
 //   max: 12
 // };
-var url = require('url');
-var config = {};
+//
+// var pool = new pg.Pool(config);
 
-if (process.env.DATABASE_URL) {
-  // Heroku gives a url, not a connection object
-  // https://github.com/brianc/node-pg-pool
-  var params = url.parse(process.env.DATABASE_URL);
-
-  config = {
-    host: params.hostname,
-    port: params.port,
-    database: params.pathname.split('/')[1],
-    ssl: true, // heroku requires ssl to be true
-    max: 12, // max number of clients in the pool
-    idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
-  };
-
-} else {
-  config = {
-    // user: process.env.PG_USER || null, //env var: PGUSER
-    // password: process.env.DATABASE_SECRET || null, //env var: PGPASSWOR
-    host: process.env.DATABASE_SERVER || 'localhost', // Server hosting the postgres database
-    port: process.env.DATABASE_PORT || 5432, //env var: PGPORT
-    database: process.env.DATABASE_NAME || 'tododb', //env var: PGDATABASE
-    max: 12, // max number of clients in the pool
-    idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
-  };
-}
-
-var pool = new pg.Pool(config);
+// new method removing pg code to methods/connection
+var pool = require('./modules/connection');
+var pg = require('pg');
 
 // static folder
 app.use(express.static('public'));
