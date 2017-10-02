@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/BZeise/ngAlso/issues"
   },
-  "homepage": "https://github.com/BZeise/ngAlso#readme"
+  "homepage": "https://github.com/BZeise/ngAlso#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "node": "^8.3.0",
+    "path": "^0.12.7",
+    "pg": "^7.3.0"
+  }
 }

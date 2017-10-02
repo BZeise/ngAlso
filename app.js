@@ -32,7 +32,7 @@ app.listen(port, function() {
 // base url
 app.get('/', function(req, res) {
   console.log('base url hit');
-  res.sendFile('index.html');
+  res.sendFile(path.resolve('public/views/index.html'));
 });
 
 // get to populate dropdown menu

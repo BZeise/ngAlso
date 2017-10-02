@@ -1,62 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="utf-8">
+  <title>To-Do List</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="script.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
-  <title>Pet Hotel</title>
+  <script src="scripts/client.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="/styles/style.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 
 <body>
-  <h1>Owners and Pets</h1>
-  <div class="registration">
-    <label for="firstName">First Name</label>
-    <input type="text" id="firstName" placeholder="First Name">
-    <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" placeholder="Last Name">
-    <button id="register">Register</button>
-  </div>
-  <div class="details">
-    <label for="ownerName">Owner Name</label>
-    <select id="ownerName">
-
-    </select>
-    <label for="petName">Pet Name</label>
-    <input type="text" id="petName" placeholder="Pet Name">
-    <label for="color">Color</label>
-    <input type="text" id="color" placeholder="Color">
-    <label for="breed">Breed</label>
-    <input type="text" id="breed" placeholder="Breed">
-    <button id="addPet">Add Pet</button>
-  </div>
-  <div class="panel panel-default">
-    <!-- Table -->
-    <table class="table" id="pt">
-      <tr>
-        <th>Owner</th>
-        <th>Pet Name</th>
-        <th>Breed</th>
-        <th>Color</th>
-        <th>Update</th>
-        <th>Delete</th>
-        <th>Check In/Out</th>
-      </tr>
-      <tr>
-        <td>Jill Jones</td>
-        <td>Dog</td>
-        <td>Lab</td>
-        <td>Black</td>
-        <td><button id="update">Update</button></td>
-        <td><button id="delete">Delete</button></td>
-        <td><button id="check">IN</button></td>
-      </tr>
-    </table>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+        <div class="row">
+          <h3>What do you need to do?</h3>
+        </div>
+        <div class="row">
+          <label for="taskInput">Task to Do:</label>
+          <input type="text" id="taskInput" name="name" placeholder="hungry? dirty? ennui?" />
+          <input type="submit" value="Add Task" id="submitButton" class="btn" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+      <table id="myTable" class="table table-hover">
+        <thead>
+        <tr>
+          <th>To-Do List</th>
+          <th>Complete</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+      </table>
+      </div>
+    </div>
   </div>
 </body>
 
