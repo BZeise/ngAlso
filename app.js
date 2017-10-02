@@ -7,7 +7,7 @@ var port = process.env.PORT || 1234;
 // globals
 var pg = require('pg');
 var config = {
-  database: 'todoDB',
+  database: 'tododb',
   host: 'localhost',
   port: 5432, // always use this port for localhost postgresql
   max: 12
@@ -27,7 +27,7 @@ app.listen(port, function() {
 // base url
 app.get('/', function(req, res) {
   console.log('base url hit');
-  res.sendFile(path.resolve('public/views/index.html'));
+  res.sendFile(path.resolve('public/index.html'));
 });
 
 // post to add new task to taskDB
@@ -60,6 +60,7 @@ app.get('/tasks', function(req, res) {
       console.log( 'connected to tasks DB from get' );
       var taskList = [];
       var resultSet = connection.query( "SELECT * FROM task_table ORDER BY complete, task" );
+      console.log('resultSet is', resultSet);
       resultSet.on('row', function(row) {
         taskList.push(row);
       }); //end

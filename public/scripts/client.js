@@ -44,7 +44,7 @@ function saveNewTask(newestTask){
 function getTasks(){
   $.ajax({
     type: 'GET',
-    url: '/tasks',
+    url: '../tasks',
     success: function(tasksData){
       displayTasks(tasksData);
     },
