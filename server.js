@@ -5,19 +5,20 @@ var bodyParser = require('body-parser');
 var port = process.env.PORT || 1234;
 
 // globals
-// var config = {
-//   database: 'tododb',
-//   host: process.env.DATABASE_URL,
-//   // host: process.env.DATABASE_URL || 'localhost',
-//   // port: 5432, // always use this port for localhost postgresql
-//   max: 12
-// };
-//
-// var pool = new pg.Pool(config);
+var pg = require('pg');
+var config = {
+  database: 'tododb',
+  // connectionString: process.env.DATABASE_URL,
+  host: 'localhost',
+  port: 5432, // always use this port for localhost postgresql
+  max: 12
+};
+
+var pool = new pg.Pool(config);
 
 // new method removing pg code to methods/connection
-var pool = require('./modules/connection');
-var pg = require('pg');
+// var pool = require('./modules/connection');
+// var pg = require('pg');
 
 // static folder
 app.use(express.static('public'));
@@ -26,7 +27,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // spin up server
 app.listen(port, function() {
   console.log('server up on', port);
-  console.log('pool is', pool);
+  // console.log('pool.pool is', pool.pool);
 });
 
 // base url
@@ -42,13 +43,13 @@ app.post( '/tasks', function( req, res ) {
     if( err ){
       console.log( err );
       done();
-      res.send( 400 );
+      res.sendStatus( 400 );
     } else {
       console.log( 'connected to tasks db from post' );
       connection.query( "INSERT INTO task_table (task) VALUES ( $1 )",
       [ req.body.task ] );
       done();
-      res.send( 200 );
+      res.sendStatus( 200 );
     } // end no error
   }); // end pool connect
 }); // end post
@@ -60,7 +61,7 @@ app.get('/tasks', function(req, res) {
     if( err ) {
       console.log( err );
       done();
-      res.send( 400 );
+      res.sendStatus( 400 );
     } else {
       console.log( 'connected to tasks DB from get' );
       var taskList = [];
@@ -84,12 +85,12 @@ app.post( '/delete', function( req, res ) {
     if( err ){
       console.log( err );
       done();
-      res.send( 400 );
+      res.sendStatus( 400 );
     } else {
       console.log( 'connected to tasks db from delete post' );
       connection.query( "DELETE FROM task_table WHERE user_id = '" + req.body.deleteID + "';");
       done();
-      res.send( 200 );
+      res.sendStatus( 200 );
     } // end no error
   }); // end pool connect
 }); // end post
@@ -101,12 +102,12 @@ app.post( '/complete', function( req, res ) {
     if( err ){
       console.log( err );
       done();
-      res.send( 400 );
+      res.sendStatus( 400 );
     } else {
       console.log( 'connected to tasks db from complete post, completeID is: ', req.body.completeID );
       connection.query( "UPDATE task_table SET complete = true WHERE user_id = " + req.body.completeID + ";");
       done();
-      res.send( 200 );
+      res.sendStatus( 200 );
     } // end no error
   }); // end pool connect
 }); // end post
