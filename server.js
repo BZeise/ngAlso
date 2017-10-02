@@ -27,7 +27,7 @@ app.listen(port, function() {
 // base url
 app.get('/', function(req, res) {
   console.log('base url hit');
-  res.sendFile(path.resolve('public/index.html'));
+  res.sendFile('index.html');
 });
 
 // post to add new task to taskDB
@@ -60,7 +60,6 @@ app.get('/tasks', function(req, res) {
       console.log( 'connected to tasks DB from get' );
       var taskList = [];
       var resultSet = connection.query( "SELECT * FROM task_table ORDER BY complete, task" );
-      console.log('resultSet is', resultSet);
       resultSet.on('row', function(row) {
         taskList.push(row);
       }); //end

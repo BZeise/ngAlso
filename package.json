@@ -1,29 +1,31 @@
 {
   "name": "ngalso",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "todo_list",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "pg": "^6.2.3"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BZeise/ngAlso.git"
   },
-  "author": "",
+  "keywords": [
+    "todo",
+    "list",
+    "task"
+  ],
+  "author": "Ben Z",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BZeise/ngAlso/issues"
   },
-  "homepage": "https://github.com/BZeise/ngAlso#readme",
-  "dependencies": {
-    "ajax": "0.0.4",
-    "body-parser": "^1.18.2",
-    "express": "^4.16.1",
-    "jquery": "^3.2.1",
-    "node": "^8.3.0",
-    "path": "^0.12.7",
-    "pg": "^7.3.0"
-  }
+  "homepage": "https://github.com/BZeise/ngAlso#readme"
 }
