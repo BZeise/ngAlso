@@ -6,13 +6,13 @@ var port = process.env.PORT || 1234;
 
 // globals
 var pg = require('pg');
-var config = {
-  database: 'tododb',
-  // connectionString: process.env.DATABASE_URL,
-  host: 'localhost',
-  port: 5432, // always use this port for localhost postgresql
-  max: 12
-};
+// var config = {
+//   database: 'tododb',
+//   // connectionString: process.env.DATABASE_URL,
+//   host: 'localhost',
+//   port: 5432, // always use this port for localhost postgresql
+//   max: 12
+// };
 
 // var pool = new pg.Pool(config);
 
@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
 // post to add new task to taskDB
 app.post( '/tasks', function( req, res ) {
   console.log( 'post hit to /tasks:', req.body );
-  pg.connect(process.env.DATABASE_URL, function( err, connection, done ){
+  pg.connect(, function( err, connection, done ){
     if( err ){
       console.log( err );
       done();
