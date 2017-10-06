@@ -13,8 +13,14 @@ var config = {
   port: 5432, // always use this port for localhost postgresql
   max: 12
 };
-
-// var pool = new pg.Pool(config);
+// If we are running on Heroku, use the remote database (with SSL)
+if (process.env.DATABASE_URL != undefined) {
+  config.connectionString = process.env.DATABASE_URL + "?ssl=true";
+} else {
+  // running locally, use our local database instead
+  config.connectionString = 'postgres://localhost:5432/tododb';
+}
+var pool = new pg.Pool(config);
 
 // new method removing pg code to methods/connection
 // var pool = require('./modules/connection');
@@ -39,7 +45,8 @@ app.get('/', function(req, res) {
 // post to add new task to taskDB
 app.post( '/tasks', function( req, res ) {
   console.log( 'post hit to /tasks:', req.body );
-  pg.connect(process.env.DATABASE_URL, function( err, connection, done ){
+  pool.connect( function( err, connection, done ){
+  // pg.connect(process.env.DATABASE_URL, function( err, connection, done ){
     if( err ){
       console.log( err );
       done();
@@ -57,7 +64,8 @@ app.post( '/tasks', function( req, res ) {
 // get to populate task list
 app.get('/tasks', function(req, res) {
   console.log('get hit to /tasks');
-  pg.connect(process.env.DATABASE_URL, function( err, connection, done ) {
+  pool.connect( function( err, connection, done ){
+  // pg.connect(process.env.DATABASE_URL, function( err, connection, done ){
     if( err ) {
       console.log( err );
       done();
@@ -81,7 +89,8 @@ app.get('/tasks', function(req, res) {
 // post to delete a task from taskDB
 app.post( '/delete', function( req, res ) {
   console.log( 'post hit to /delete:', req.body );
-  pg.connect(process.env.DATABASE_URL, function( err, connection, done ){
+  pool.connect( function( err, connection, done ){
+  // pg.connect(process.env.DATABASE_URL, function( err, connection, done ){
     if( err ){
       console.log( err );
       done();
@@ -98,7 +107,8 @@ app.post( '/delete', function( req, res ) {
 // post to complete a task from taskDB
 app.post( '/complete', function( req, res ) {
   console.log( 'post hit to /complete:', req.body );
-  pg.connect(process.env.DATABASE_URL, function( err, connection, done ){
+  pool.connect( function( err, connection, done ){
+  // pg.connect(process.env.DATABASE_URL, function( err, connection, done ){
     if( err ){
       console.log( err );
       done();
